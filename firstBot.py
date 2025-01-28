@@ -1,4 +1,4 @@
-import logging
+import logging, os
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
 
@@ -7,11 +7,13 @@ logging.basicConfig(
     level=logging.INFO
 )
 
+TOKEN = os.getenv('TOKEN_TESTES')
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="Olá, %(name)s, sou um Bot")
 
 if __name__ == '__main__':
-    application = ApplicationBuilder().token('TOKEN_TESTES').build()
+    application = ApplicationBuilder().token(TOKEN).build()
 
     start_handler = CommandHandler('start', start)
     application.add_handler(start_handler)
