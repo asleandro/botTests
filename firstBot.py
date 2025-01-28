@@ -10,7 +10,8 @@ logging.basicConfig(
 TOKEN = os.getenv('TOKEN_TESTES')
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await context.bot.send_message(chat_id=update.effective_chat.id, text="Olá, %(name)s, sou um Bot")
+    nomeDoUsuario = update.effective_user.name
+    await context.bot.send_message(chat_id=update.effective_chat.id, text="Olá, {nomeDoUsuario}, sou um Bot")
 
 if __name__ == '__main__':
     application = ApplicationBuilder().token(TOKEN).build()
